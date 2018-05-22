@@ -2,6 +2,13 @@ package com.jeanwolff.cursomc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity(name="CATEGORIA")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,8 +23,13 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID_CATEGORIA")
 	private Integer id;
 
+	@Column(name="NOME")
 	private String nome;
 
 	public Integer getId() {
