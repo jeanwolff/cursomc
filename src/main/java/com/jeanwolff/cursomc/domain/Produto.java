@@ -2,7 +2,9 @@ package com.jeanwolff.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity(name="PRODUTO")
+@Entity(name = "PRODUTO")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,20 +40,40 @@ public class Produto implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_PRODUTO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_PRODUTO")
 	private Integer id;
-	
-	@Column(name="NOME")
+
+	@Column(name = "NOME")
 	private String nome;
 
-	@Column(name="PRECO")
+	@Column(name = "PRECO")
 	private Double preco;
-	
+
 	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private List<Categoria> categorias = new ArrayList<>();
+
+	@OneToMany(mappedBy="id.produto")
+	private Set<ItemPedido> itens = new HashSet<>();
+
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList<>();
+		for(ItemPedido x : itens) {
+			lista.add(x.getPedido());
+		}
+		return lista;
+	}
+	
+	
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
+	}
 
 	public Integer getId() {
 		return id;
@@ -75,7 +98,6 @@ public class Produto implements Serializable {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -114,5 +136,6 @@ public class Produto implements Serializable {
 			return false;
 		return true;
 	}
+	
 
 }
