@@ -1,5 +1,7 @@
 package com.jeanwolff.cursomc.resources.exception;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,13 @@ public class ResourceExceptionHandler {
 
 	public ResourceExceptionHandler() {
 	}
+	
 
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
-		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
+		
+		
+		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), new Date(System.currentTimeMillis()) );
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
