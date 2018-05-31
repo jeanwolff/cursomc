@@ -12,13 +12,22 @@ import com.jeanwolff.cursomc.services.exception.ObjectNotFoundException;
 @Service
 public class CategoriaService {
 
-
 	@Autowired
 	private CategoriaRepository repo;
 
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+ id +", Tipo: "+ Categoria.class.getSimpleName()));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getSimpleName()));
+	}
+
+	public void create(Categoria categoria) {
+		repo.save(categoria);
+	}
+
+	public Categoria insert(Categoria categoria) {
+		categoria.setId(null);
+		return repo.save(categoria);
 	}
 
 }

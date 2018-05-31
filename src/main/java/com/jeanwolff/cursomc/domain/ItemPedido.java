@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+@Entity(name="ITEM_PEDIDO")
 public class ItemPedido implements Serializable{
 
 	
