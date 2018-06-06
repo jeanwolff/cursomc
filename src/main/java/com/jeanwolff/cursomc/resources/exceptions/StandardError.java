@@ -1,4 +1,4 @@
-package com.jeanwolff.cursomc.resources.exception;
+package com.jeanwolff.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 import java.util.Date;

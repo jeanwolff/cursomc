@@ -1,4 +1,4 @@
-package com.jeanwolff.cursomc.services.exception;
+package com.jeanwolff.cursomc.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 
