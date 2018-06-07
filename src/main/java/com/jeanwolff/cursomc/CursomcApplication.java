@@ -35,7 +35,7 @@ import com.jeanwolff.cursomc.repositories.ProdutoRepository;
 public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
-	private CategoriaRepository categoriaRepositor;
+	private CategoriaRepository categoriaRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	@Autowired
@@ -63,6 +63,11 @@ public class CursomcApplication implements CommandLineRunner {
 
 		Categoria cat1 = new Categoria("Informática");
 		Categoria cat2 = new Categoria("Escritório");
+		Categoria cat3 = new Categoria("Cama Mesa e banho");
+		Categoria cat4 = new Categoria("Jardinagem");
+		Categoria cat5 = new Categoria("Decoração");
+		Categoria cat6 = new Categoria("Perfumaria");
+		Categoria cat7 = new Categoria("Eletrônicos");
 
 		Produto p1 = new Produto("Computador", 2000.00);
 		Produto p2 = new Produto("Impressora", 800.00);
@@ -88,7 +93,7 @@ public class CursomcApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		categoriaRepositor.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
 		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
