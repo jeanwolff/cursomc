@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.jeanwolff.cursomc.Constants;
+import com.jeanwolff.cursomc.ConstantsMessages;
 import com.jeanwolff.cursomc.services.exceptions.DataIntegrityException;
 import com.jeanwolff.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -35,7 +35,7 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<StandardError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
-		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), Constants.ERRO_VALIDACAO, new Date(System.currentTimeMillis()) );
+		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), ConstantsMessages.ERRO_VALIDACAO, new Date(System.currentTimeMillis()) );
  		for (FieldError x : e.getBindingResult().getFieldErrors()) {
 			err.addError(x.getField(), x.getDefaultMessage());
 		}

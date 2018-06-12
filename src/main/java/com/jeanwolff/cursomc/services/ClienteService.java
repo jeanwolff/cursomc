@@ -35,7 +35,7 @@ public class ClienteService {
 
 	public Cliente update(Cliente cliente) {
 		Cliente newCliente = find(cliente.getId());
-		updateDate(newCliente, cliente);
+		updateData(newCliente, cliente);
 		return repo.save(newCliente);
 	}
 
@@ -61,7 +61,7 @@ public class ClienteService {
 		return new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
 	}
 	
-	private void updateDate(Cliente newCliente, Cliente cliente) {
+	private void updateData(Cliente newCliente, Cliente cliente) {
 		newCliente.setNome(cliente.getNome());
 		newCliente.setEmail(cliente.getEmail());
 	}
