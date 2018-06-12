@@ -10,10 +10,10 @@ import javax.validation.Payload;
 
 import com.jeanwolff.cursomc.ConstantsMessages;
 
-@Constraint(validatedBy = ClienteInsertValidator.class)
+@Constraint(validatedBy = ClienteUpdateValidator.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ClienteInsert {
+public @interface ClienteUpdate {
 	
 	String message() default ConstantsMessages.ERRO_VALIDACAO;
 
