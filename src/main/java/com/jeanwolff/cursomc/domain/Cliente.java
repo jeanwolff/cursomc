@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", unique = true)
 	private String email;
 
 	@Column(name = "CPF_CNPJ")
