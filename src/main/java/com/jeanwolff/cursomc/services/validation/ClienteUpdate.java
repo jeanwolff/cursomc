@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import com.jeanwolff.cursomc.ConstantsMessages;
+import com.jeanwolff.cursomc.util.constants.ConstantsMessages;
 
 @Constraint(validatedBy = ClienteUpdateValidator.class)
 @Target({ ElementType.TYPE })

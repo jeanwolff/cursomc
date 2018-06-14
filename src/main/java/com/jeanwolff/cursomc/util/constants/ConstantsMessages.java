@@ -1,4 +1,4 @@
-package com.jeanwolff.cursomc;
+package com.jeanwolff.cursomc.util.constants;
 
 public class ConstantsMessages {
 
