@@ -73,7 +73,6 @@ public class Pedido implements Serializable {
 		return soma;
 	}
 	
-	
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
