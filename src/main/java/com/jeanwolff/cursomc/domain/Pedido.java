@@ -1,8 +1,11 @@
 package com.jeanwolff.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -47,7 +50,7 @@ public class Pedido implements Serializable {
 	@Column(name = "ID_PEDIDO")
 	private Integer id;
 
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "INSTANTE")
 	private Date instante;
 
@@ -67,12 +70,12 @@ public class Pedido implements Serializable {
 
 	public Double getValorTotal() {
 		Double soma = 0.0;
-		for(ItemPedido item : itens) {
+		for (ItemPedido item : itens) {
 			soma = soma + item.getSubTotal();
 		}
 		return soma;
 	}
-	
+
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
@@ -148,8 +151,19 @@ public class Pedido implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", instante=" + instante + ", pagamento=" + pagamento + ", cliente=" + cliente
-				+ ", enderecoDeEntrega=" + enderecoDeEntrega + "]";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:sss");
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido Número: " + getId());
+		builder.append(", Instante: " + sdf.format(getInstante()));
+		builder.append(", Cliente: " + getCliente().getNome() + ", CPF/CNPJ: " + getCliente().getCpfOuCnpj());
+		builder.append(", Situação do Pagamento: " + getPagamento().getEstado().getDescricao());
+		builder.append("\n Detalhes: \n");
+		for (ItemPedido itemPedido : itens) {
+			builder.append(itemPedido.toString());
+		}
+		builder.append("Valor total: " + nf.format(getValorTotal()));
+		return builder.toString();
 	}
 
 }
