@@ -104,5 +104,9 @@ public class ClienteService {
 		newCliente.setNome(cliente.getNome());
 		newCliente.setEmail(cliente.getEmail());
 	}
+
+	public Cliente findByEmail(String email) {
+		return repo.findByEmail(email);
+	}
 	
 }
