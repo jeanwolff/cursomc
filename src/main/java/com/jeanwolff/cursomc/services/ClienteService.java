@@ -28,6 +28,7 @@ import com.jeanwolff.cursomc.security.UserSS;
 import com.jeanwolff.cursomc.services.exceptions.AuthorizationException;
 import com.jeanwolff.cursomc.services.exceptions.DataIntegrityException;
 import com.jeanwolff.cursomc.services.exceptions.ObjectNotFoundException;
+import com.jeanwolff.cursomc.util.constants.ConstantsMessages;
 import com.jeanwolff.cursomc.util.constants.UtilConstants;
 
 @Service
@@ -58,12 +59,11 @@ public class ClienteService {
 		UserSS user = UserService.authenticated();
 
 		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
-			throw new AuthorizationException("Acesso Negado");
+			throw new AuthorizationException(ConstantsMessages.ERRO_ACESSO_NEGADO);
 		}
 
 		Optional<Cliente> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getSimpleName()));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(ConstantsMessages.ERRO_OBJETO_NAO_ENCONTRADO+ " id:" + id + ", Tipo: " + Cliente.class.getSimpleName()));
 	}
 
 	public Cliente insert(Cliente cliente) {
@@ -126,13 +126,24 @@ public class ClienteService {
 	}
 
 	public Cliente findByEmail(String email) {
-		return repo.findByEmail(email);
+		UserSS user = UserService.authenticated();
+		
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())){
+			throw new AuthorizationException(ConstantsMessages.ERRO_ACESSO_NEGADO);
+		}
+
+		Cliente cliente = repo.findByEmail(email);
+		
+		if(cliente == null) {
+			throw new ObjectNotFoundException(ConstantsMessages.ERRO_OBJETO_NAO_ENCONTRADO + " Id:" + user.getId() + ", Tipo: "+ Cliente.class.getName());
+		}
+		return cliente;
 	}
 
 	public URI uploadProfilePicture(MultipartFile multiPartFile) {
 		UserSS user = UserService.authenticated();
 		if (user == null) {
-			throw new AuthorizationException("Acesso Negado");
+			throw new AuthorizationException(ConstantsMessages.ERRO_ACESSO_NEGADO);
 		}
 		BufferedImage jpgImage = imageService.getImageFromFile(multiPartFile);
 		jpgImage = imageService.cropSquare(jpgImage);
