@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity(name = "PEDIDO")
+@Entity
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;

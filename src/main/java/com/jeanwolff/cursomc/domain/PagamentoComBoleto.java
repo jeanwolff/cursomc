@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.jeanwolff.cursomc.domain.enums.EstadoPagamento;
 
-@Entity(name="PAGAMENTO_COM_BOLETO")
+@Entity
 @JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
 

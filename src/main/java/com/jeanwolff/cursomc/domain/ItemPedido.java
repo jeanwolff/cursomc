@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name = "ITEM_PEDIDO")
+@Entity
 public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;

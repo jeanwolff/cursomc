@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jeanwolff.cursomc.domain.enums.Perfil;
 import com.jeanwolff.cursomc.domain.enums.TipoCliente;
 
-@Entity(name = "CLIENTE")
+@Entity
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;

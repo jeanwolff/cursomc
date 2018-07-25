@@ -1,30 +1,40 @@
 package com.jeanwolff.cursomc.resources.exceptions;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	public StandardError() {
-
-	}
-
-	public StandardError(Integer status, String message, Date timeStamp) {
-		super();
-		this.status = status;
-		this.message = message;
-		this.timeStamp = timeStamp;
-	}
+	private Long timestamp;
 
 	private Integer status;
 
+	private String error;
+	
 	private String message;
 	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm:sss")
-	private Date timeStamp;
+	private String path;
+
+	public StandardError(Long timestamp, Integer status, String error, String message, String path) {
+		super();
+		this.timestamp = timestamp;
+		this.status = status;
+		this.error = error;
+		this.message = message;
+		this.path = path;
+	}
+
+	public StandardError() {
+		super();
+	}
+
+	public Long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Long timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	public Integer getStatus() {
 		return status;
@@ -32,6 +42,14 @@ public class StandardError implements Serializable{
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	public String getMessage() {
@@ -42,12 +60,13 @@ public class StandardError implements Serializable{
 		this.message = message;
 	}
 
-	public Date getTimeStamp() {
-		return timeStamp;
+	public String getPath() {
+		return path;
 	}
 
-	public void setTimeStamp(Date timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setPath(String path) {
+		this.path = path;
 	}
+	
 
 }
