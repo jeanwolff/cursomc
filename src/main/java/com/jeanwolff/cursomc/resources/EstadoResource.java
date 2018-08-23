@@ -29,7 +29,6 @@ public class EstadoResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<EstadoDTO>> findAll() {
-		System.out.println("======>");
 		List<Estado> list = service.findAll();
 		List<EstadoDTO> listDto = list.stream().map(obj -> new EstadoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);

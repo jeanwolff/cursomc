@@ -52,6 +52,7 @@ public abstract class AbstractEmailService implements EmailService {
 		MimeMessageHelper mmh = new MimeMessageHelper(mimeMessage, true);
 		mmh.setTo(pedido.getCliente().getEmail());
 		mmh.setFrom(sender);
+		//mmh.setBcc(recipient);
 		mmh.setSubject("Pedido Confirmado! Codigo:"+ pedido.getId());
 		mmh.setSentDate(new Date(System.currentTimeMillis()));
 		mmh.setText(htmlFromTemplatePedido(pedido), true);
@@ -66,14 +67,12 @@ public abstract class AbstractEmailService implements EmailService {
 		sm.setSentDate(new Date(System.currentTimeMillis()));
 		sm.setText(pedido.toString());
 		return sm;
-		
 	}
 	
 	protected String htmlFromTemplatePedido(Pedido pedido) {
 		Context context = new Context();
 		context.setVariable("pedido", pedido);
 		return templateEngine.process("email/confirmacaoPedido", context);
-		
 	}
 	
 	@Override

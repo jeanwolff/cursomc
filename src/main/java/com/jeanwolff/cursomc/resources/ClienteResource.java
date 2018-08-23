@@ -39,9 +39,9 @@ public class ClienteResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO categoriaDTO, @PathVariable Integer id) {
-		Cliente categoria = service.fromDTO(categoriaDTO);
-		categoria.setId(id);
-		categoria = service.update(categoria);
+		Cliente cliente = service.fromDTO(categoriaDTO);
+		cliente.setId(id);
+		cliente = service.update(cliente);
 		return ResponseEntity.noContent().build();
 	}
 
@@ -87,7 +87,7 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(value="/email", method=RequestMethod.GET)
-	public ResponseEntity<Cliente> findByEmail(@RequestParam String email){
+	public ResponseEntity<Cliente> findByEmail(@RequestParam(value="value") String email){
 		Cliente cliente = service.findByEmail(email);
 		return ResponseEntity.ok().body(cliente);
 	}

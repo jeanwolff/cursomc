@@ -28,9 +28,9 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getSimpleName()));
 	}
 
-	public void create(Categoria categoria) {
-		repo.save(categoria);
-	}
+//	public void create(Categoria categoria) {
+//		repo.save(categoria);
+//	}
 
 	public Categoria insert(Categoria categoria) {
 		categoria.setId(null);
@@ -67,7 +67,6 @@ public class CategoriaService {
 	
 	private void updateData(Categoria newCategoria, Categoria categoria) {
 		newCategoria.setNome(categoria.getNome());
-		
 	}
 
 }

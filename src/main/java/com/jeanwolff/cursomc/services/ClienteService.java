@@ -102,11 +102,9 @@ public class ClienteService {
 	}
 
 	public Cliente fromDTO(ClienteNewDTO clienteNewDTO) {
-		Cliente cliente = new Cliente(clienteNewDTO.getNome(), clienteNewDTO.getEmail(), clienteNewDTO.getCpfOuCnpj(),
-				TipoCliente.toEnum(clienteNewDTO.getTipo()), pe.encode(clienteNewDTO.getSenha()));
+		Cliente cliente = new Cliente(clienteNewDTO.getNome(), clienteNewDTO.getEmail(), clienteNewDTO.getCpfOuCnpj(), TipoCliente.toEnum(clienteNewDTO.getTipo()), pe.encode(clienteNewDTO.getSenha()));	
 		Cidade cidade = new Cidade(clienteNewDTO.getCidadeId(), null, null);
-		Endereco end = new Endereco(clienteNewDTO.getLogradouro(), clienteNewDTO.getNumero(),
-				clienteNewDTO.getComplemento(), clienteNewDTO.getBairro(), clienteNewDTO.getCep(), cliente, cidade);
+		Endereco end = new Endereco(clienteNewDTO.getLogradouro(), clienteNewDTO.getNumero(), clienteNewDTO.getComplemento(), clienteNewDTO.getBairro(), clienteNewDTO.getCep(), cliente, cidade);
 		cliente.getEnderecos().add(end);
 		cliente.getTelefones().add(clienteNewDTO.getTelefone1());
 
